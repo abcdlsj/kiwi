@@ -1,0 +1,43 @@
+{
+    "admin": {
+        "listen": ":2019"
+    },
+	"apps": {
+		"http": {
+			"servers": {
+				"srv0": {
+					"listen": [":443"],
+					"routes": []
+				}
+			}
+		},
+		"tls": {
+			"automation": {
+				"policies": [{
+					"subjects": [],
+					"issuers": [{
+						"challenges": {
+							"dns": {
+								"provider": {
+									"api_token": "env.CF_API_TOKEN",
+									"name": "cloudflare"
+								}
+							}
+						},
+						"module": "acme"
+					}, {
+						"challenges": {
+							"dns": {
+								"provider": {
+									"api_token": "env.CF_API_TOKEN",
+									"name": "cloudflare"
+								}
+							}
+						},
+						"module": "zerossl"
+					}]
+				}]
+			}
+		}
+	}
+}

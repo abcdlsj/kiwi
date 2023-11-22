@@ -1,0 +1,10 @@
+[workspace]
+
+members = [
+    "cli", 
+    "runtime",
+    "server",
+    "share",
+]
+
+resolver = "2"
