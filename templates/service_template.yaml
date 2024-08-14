@@ -1,0 +1,29 @@
+services:
+  - name: my-nginx-service
+    image: nginx:latest
+    container_name: my-nginx-container
+    cpu: 0.5
+    memory: 512M
+    port_mappings:
+      - host_port: "8080"
+        container_port: "80/tcp"
+      - host_port: "8443"
+        container_port: "443/tcp"
+    volume_binds:
+      - host_path: "/path/on/host"
+        container_path: "/path/in/container"
+    network_mode: bridge
+    restart_policy: always
+    auto_remove: false
+
+  - name: my-redis-service
+    image: redis:6
+    container_name: my-redis-container
+    cpu: 0.3
+    memory: 256M
+    port_mappings:
+      - host_port: "6379"
+        container_port: "6379/tcp"
+    network_mode: host
+    restart_policy: unless-stopped
+    auto_remove: false
